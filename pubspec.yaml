@@ -38,7 +38,7 @@ dependencies:
   get: ^4.6.6
   google_fonts: ^6.2.1
   flutter_svg: ^2.0.16
-  flutter_slidable: ^3.0.1
+  flutter_slidable: ^2.0.0
 
 dev_dependencies:
   flutter_test:
