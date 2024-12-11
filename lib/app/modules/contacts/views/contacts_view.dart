@@ -16,6 +16,9 @@ class ContactsView extends GetView<ContactsController> {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final bottomPadding = MediaQuery.of(context).padding.bottom;
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
@@ -56,44 +59,46 @@ class ContactsView extends GetView<ContactsController> {
               ? _buildContactsList()
               : _buildGroupsList(),
           )),
-          Transform.translate(
-            offset: Offset(0, _getButtonOffset(context)),
-            child: Center(
-              child: Column(
-                children: [
-                  Text(
-                    "Can't find your contact?",
-                    style: AppTextStyles.subtitle.copyWith(
-                      color: Colors.black,
-                      fontSize: 16,
-                    ),
+          Container(
+            padding: EdgeInsets.only(
+              bottom: bottomPadding + 10,
+              left: 16,
+              right: 16,
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  "Can't find your contact?",
+                  style: AppTextStyles.subtitle.copyWith(
+                    color: Colors.black,
+                    fontSize: 16,
                   ),
-                  const SizedBox(height: 10),
-                  SizedBox(
-                    width: 175,
-                    height: 50,
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.black,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      child: Text(
-                        'Invite here',
-                        style: AppTextStyles.subtitle.copyWith(
-                          color: Colors.white,
-                          fontSize: 16,
-                        ),
+                ),
+                const SizedBox(height: 10),
+                SizedBox(
+                  width: 175,
+                  height: 50,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
                       ),
                     ),
+                    child: Text(
+                      'Invite here',
+                      style: AppTextStyles.subtitle.copyWith(
+                        color: Colors.white,
+                        fontSize: 16,
+                      ),
+                    ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
-          const SizedBox(height: 20),
         ],
       ),
     );
@@ -341,17 +346,5 @@ class ContactsView extends GetView<ContactsController> {
         ),
       ),
     );
-  }
-
-  double _getButtonOffset(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
-    
-    // Check if device is iPhone Pro model (approximate dimensions)
-    if ((height >= 844 && height <= 932) && (width >= 390 && width <= 430)) {
-      return -(height * -0.02); // Smaller upward offset for Pro models
-    }
-    
-    return -(height * 0.02); // Default offset for other devices
   }
 } 
