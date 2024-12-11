@@ -57,7 +57,7 @@ class ContactsView extends GetView<ContactsController> {
               : _buildGroupsList(),
           )),
           Transform.translate(
-            offset: const Offset(0, -20),
+            offset: Offset(0, _getButtonOffset(context)),
             child: Center(
               child: Column(
                 children: [
@@ -70,8 +70,8 @@ class ContactsView extends GetView<ContactsController> {
                   ),
                   const SizedBox(height: 10),
                   SizedBox(
-                    width: 130,
-                    height: 40,
+                    width: 175,
+                    height: 50,
                     child: ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
@@ -80,13 +80,11 @@ class ContactsView extends GetView<ContactsController> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      child: Center(
-                        child: Text(
-                          'Invite here',
-                          style: AppTextStyles.subtitle.copyWith(
-                            color: Colors.white,
-                            fontSize: 16,
-                          ),
+                      child: Text(
+                        'Invite here',
+                        style: AppTextStyles.subtitle.copyWith(
+                          color: Colors.white,
+                          fontSize: 16,
                         ),
                       ),
                     ),
@@ -343,5 +341,17 @@ class ContactsView extends GetView<ContactsController> {
         ),
       ),
     );
+  }
+
+  double _getButtonOffset(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
+    
+    // Check if device is iPhone Pro model (approximate dimensions)
+    if ((height >= 844 && height <= 932) && (width >= 390 && width <= 430)) {
+      return -(height * 0.001); // Smaller upward offset for Pro models
+    }
+    
+    return -(height * 0.02); // Default offset for other devices
   }
 } 

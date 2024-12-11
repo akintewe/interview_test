@@ -61,7 +61,7 @@ class GroupsView extends StatelessWidget {
             ),
           ),
           Transform.translate(
-            offset: Offset(0, -(MediaQuery.of(context).size.height * 0.06)),
+            offset: Offset(0, _getButtonOffset(context)),
             child: SizedBox(
               width: 175,
               height: 50,
@@ -159,5 +159,17 @@ class GroupsView extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  double _getButtonOffset(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
+    
+    // Check if device is iPhone Pro model (approximate dimensions)
+    if ((height >= 844 && height <= 932) && (width >= 390 && width <= 430)) {
+      return -(height * 0.04); // Smaller upward offset for Pro models
+    }
+    
+    return -(height * 0.02); // Default offset for other devices
   }
 } 
