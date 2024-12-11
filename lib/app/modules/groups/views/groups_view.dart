@@ -61,7 +61,7 @@ class GroupsView extends StatelessWidget {
             ),
           ),
           Transform.translate(
-            offset: Offset(0, -(MediaQuery.of(context).size.height * 0.1)),
+            offset: Offset(0, -(MediaQuery.of(context).size.height * 0.06)),
             child: SizedBox(
               width: 175,
               height: 50,
