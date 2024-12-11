@@ -349,7 +349,7 @@ class ContactsView extends GetView<ContactsController> {
     
     // Check if device is iPhone Pro model (approximate dimensions)
     if ((height >= 844 && height <= 932) && (width >= 390 && width <= 430)) {
-      return -(height * 0.001); // Smaller upward offset for Pro models
+      return -(height * -0.02); // Smaller upward offset for Pro models
     }
     
     return -(height * 0.02); // Default offset for other devices
